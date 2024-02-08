@@ -11,7 +11,8 @@ class Item(BaseModel):
     price: float 
     tax: float | None = None
 
-# Body()에서 example value 넣기(openapi_examples() 함수 이용) 다수의 example value 넣을 수 있지만 표시되는 건 상단의 하나 뿐임.
+# Body()에서 example value 넣기(openapi_examples() 함수 이용) 다수의 example value 넣을 수 있고 표시도 다 됨.
+# **이게 최신**
 @app.put("/items/{item_id}")
 async def update_item(
     item_id: int, 
@@ -28,8 +29,22 @@ async def update_item(
                         "price" : 35.4,
                         "tax" : 3.2
                     }
+                },
+                "converted": {
+                    "summary": "An example with converted data",
+                    "description": "FastAPI can convert price 'strings' to actual 'numbers' automatically",
+                    "value": {
+                        "name": "bar",
+                        "price": "35.4"
+                    }
+                },
+                "invalid": {
+                    "summary": "Invalid data is rejected with an error",
+                    "value": {
+                        "name": "Baz",
+                        "price": "thirty five point four"
+                    }
                 }
-                "converted":
             }
         )
     ]
