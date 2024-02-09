@@ -35,7 +35,7 @@ async def read_items() -> list[Item]:
         Item(name= "Plumbus", price=32.0)
     ]
 
-
+# response_model은 클래스가 들어갈 수 있는 듯 함
 # 정해진 타입과 다른 데이터를 리턴받고 싶을 때, response_model -> 필터링 역할을 함 / ex) 딕셔너리 또는 데이터베이스 객체를 받고 싶은데 그것들이 Pydantic model 안에 정의되어 있을 때
 @app.post("/items_UseRM/", response_model=Item)                             
 async def create_item(item: Item) -> Any:
